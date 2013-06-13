@@ -1,0 +1,64 @@
+<%= form_for(@application) do |f| %>
+  <% if @application.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@application.errors.count, "error") %> prohibited this application from being saved:</h2>
+
+      <ul>
+      <% @application.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <label><%= @login_user %></label>
+    <input type="hidden" name="requester" value="<%= @login_user %>"></input>
+  </div>
+  <div>
+    <%= f.label :start %>
+  <div id="datetimepicker1" class="input-append date">
+    <input data-format="dd/MM/yyyy hh:mm:ss" type="text" name="application[start]"></input>
+    <span class="add-on">
+      <i data-time-icon="icon-time" data-date-icon="icon-calendar">
+      </i>
+    </span>
+  </div>
+<script type="text/javascript">
+  $(function() {
+    $('#datetimepicker1').datetimepicker({
+      language: 'pt-BR'
+    });
+  });
+</script>
+
+  </div>
+  <div>
+    <%= f.label :end %>
+  <div id="datetimepicker2" class="input-append date">
+    <input data-format="dd/MM/yyyy hh:mm:ss" type="text" name="application[end]"></input>
+    <span class="add-on">
+      <i data-time-icon="icon-time" data-date-icon="icon-calendar">
+      </i>
+    </span>
+  </div>
+<script type="text/javascript">
+  $(function() {
+    $('#datetimepicker2').datetimepicker({
+      language: 'pt-BR'
+    });
+  });
+</script>
+  </div>
+  <div>
+    <%= f.label :to %>
+    <%= select_tag "application[to]", options_for_select(@instances),{:multiple => true}%>
+  </div>
+  <div>
+    <%= f.label :body %>
+    <%= f.text_area :body, :size => "50x5"%>
+  </div>
+  <div class="actions">
+    <%= f.submit :apply,:class=>"btn btn-large btn-primary" %>
+  </div>
+<% end %>

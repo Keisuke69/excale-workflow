@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  user: MyString
+  password: MyString
+  role: MyString
+  removed: 1
+
+two:
+  user: MyString
+  password: MyString
+  role: MyString
+  removed: 1

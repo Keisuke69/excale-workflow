@@ -1,0 +1,40 @@
+<p id="notice"><%= notice %></p>
+<%= form_for(@application) do |f| %>
+  <% if @application.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@application.errors.count, "error") %> prohibited this application from being saved:</h2>
+
+      <ul>
+      <% @application.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= f.label :name, @application.user['user'] %>
+  </div>
+  <div>
+    <%= f.label :start %>
+    <input type="text" value="<%= @application.start %>"></input>
+  </div>
+  <div>
+    <%= f.label :end %>
+    <input type="text" value="<%= @application.end %>"></input>
+  </div>
+  <div>
+    <%= f.label :to %>
+    <%= f.text_field :to %>
+  </div>
+  <div>
+    <%= f.label :body %>
+    <%= f.text_area :body %>
+  </div>
+  <div class="actions">
+    <input type="hidden" name="application[id]" value="<%= @application.id %>"></input> 
+    <%= f.submit :approve,:class=>"btn btn-large btn-primary" %>
+    <%= f.submit :deny,:class=>"btn btn-large " %>
+  </div>
+<% end %>
+<%= link_to 'Back', applications_path %>

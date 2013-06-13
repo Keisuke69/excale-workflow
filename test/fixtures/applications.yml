@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  user_id: 1
+  start: 2013-06-13 12:56:49
+  end: 2013-06-13 12:56:49
+  to: MyString
+  body: MyText
+
+two:
+  user_id: 1
+  start: 2013-06-13 12:56:49
+  end: 2013-06-13 12:56:49
+  to: MyString
+  body: MyText

@@ -1,0 +1,42 @@
+<h1>Listing applications</h1>
+<div class= "index_list_all"><%= link_to "show all", :controller => "applications", :action => "index_all" %></div>
+<table class="table table-hover">
+  <tr>
+    <th>Date of applicayion</th>
+    <th>User</th>
+    <th>Start</th>
+    <th>End</th>
+    <th>To</th>
+    <th>Body</th>
+    <th>Status</th>
+    <th></th>
+  </tr>
+
+<% @applications.each do |application| %>
+  <tr>
+    <td><%= application.apply_date %></td>
+    <td><%= application.user['user'] %></td>
+    <td><%= application.start %></td>
+    <td><%= application.end %></td>
+    <td><%= application.to %></td>
+    <td><%= application.body %></td>
+    <td>
+        <%=
+            status = "申請中"
+            case application.status
+            when 1
+                status = "承認済"
+            when 2
+                status = "否決"
+            else
+                status = "申請中"
+            end
+         %></td>
+    <td><%= link_to 'Show', application %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Application', new_application_path %>
