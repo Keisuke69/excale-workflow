@@ -12,22 +12,22 @@
   <% end %>
 
   <div>
-    <%= f.label :user %><br />
+    <%= f.label :user %>
     <%= f.text_field :user %>
   </div>
   <div>
-    <%= f.label :password %><br />
-    <%= f.text_field :password %>
+    <%= f.label :password %>
+    <%= f.password_field :password %>
   </div>
   <div>
-    <%= f.label :role %><br />
-    <%= select :page, :name, {"申請者" => "0", "承認者" => "1"} %>
+    <%= f.label :role %>
+    <%= select  :user,:role, {"申請者" => "0", "承認者" => "1"} %>
   </div>
   <div>
-    <%= f.label :removed %><br />
-    <%= select :page, :name, {"アクティブ" => "0", "非アクティブ" => "1"} %>
+    <%= f.label :removed %>
+    <%= select :user,:removed, {"アクティブ" => "0", "非アクティブ" => "1"} %>
   </div>
   <div>
-    <%= f.submit %>
+    <%= f.submit :class => "btn btn-large" %>
   </div>
 <% end %>

@@ -1,21 +1,14 @@
 require "aws-sdk"
-
+require 'job'
 
 class ApplicationsController < ApplicationController
   # GET /applications
   # GET /applications.json
-  
-  before_filter :hoge
-
-  def hoge
-    @login_user="test2@test.com"
-    #@login_user="test2@test.com"
-  end
 
   def get_all_instances
-    access_key = Parameter.find(:first,:conditions => {:key => "aws_access_key"})
-    secret_key = Parameter.find(:first,:conditions => {:key => "aws_secret_access_key"})
-    region = "ec2.ap-northeast-1.amazonaws.com"
+    @access_key = Parameter.find(:first,:conditions => {:key => "aws_access_key"})
+    @secret_key = Parameter.find(:first,:conditions => {:key => "aws_secret_access_key"})
+    @region = "ec2.ap-northeast-1.amazonaws.com"
 
     AWS.config(:access_key_id => access_key['value'],:secret_access_key => secret_key['value'],:ec2_endpoint => region)
 
@@ -119,11 +112,38 @@ class ApplicationsController < ApplicationController
   # PUT /applications/1.json
   def update
 
+    unless @login_user_role == "1"
+      flash[:error] =  "You don't have paermission."
+      redirect_to :action => "index"
+      return
+      p "hoge"
+    end
+
     #approveおよびdenyは承認者権限のみなのでチェックが必要
     @application = Application.find(params[:id])
     result = false
     if params['commit'] == "approve"
       result = @application.update_attribute("status",1)
+
+
+
+
+
+      #ary = ParseDate::parsedate(@application['start']) #=> [2001, 5, 24, 22, 56, 30, "JST", 4]
+      #t = Time::local(*ary[0..-3]) #=> Thu May 24 22:56:30 JST 2001
+
+#2013-06-13 20:56:11 UTC
+
+      starttime = Time.strptime(@application['start'].to_s, '%Y-%m-%d %H:%M:%S')
+      endtime = Time.strptime(@application['start'].to_s, '%Y-%m-%d %H:%M:%S')
+
+      job = Job.new
+
+      #sgの算出処理必要
+      #job.send_at starttime, :authorize_ingress_from_gw_to_target, @access_key, @secret_access_key, @region,sg
+      #job.send_at endtime, :revoke_ingress_from_gw_to_target, @access_key, @secret_access_key, @region,sg
+
+
     elsif params['commit'] == "deny"
       result = @application.update_attribute("status",2)
     end

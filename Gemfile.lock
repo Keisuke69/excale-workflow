@@ -34,6 +34,7 @@ GEM
       nokogiri (>= 1.4.4)
       uuidtools (~> 2.1)
     builder (3.0.4)
+    chronic (0.9.1)
     coffee-rails (3.2.2)
       coffee-script (>= 2.2.0)
       railties (~> 3.2.0)
@@ -41,7 +42,14 @@ GEM
       coffee-script-source
       execjs
     coffee-script-source (1.6.2)
+    daemons (1.1.9)
+    delayed_job (3.0.5)
+      activesupport (~> 3.0)
+    delayed_job_active_record (0.4.4)
+      activerecord (>= 2.1.0, < 4)
+      delayed_job (~> 3.0)
     erubis (2.7.0)
+    eventmachine (1.0.3)
     execjs (1.4.0)
       multi_json (~> 1.0)
     hike (1.2.3)
@@ -104,6 +112,9 @@ GEM
       execjs (>= 0.3.0)
       multi_json (~> 1.0, >= 1.0.2)
     uuidtools (2.1.4)
+    whenever (0.8.2)
+      activesupport (>= 2.3.4)
+      chronic (>= 0.6.3)
 
 PLATFORMS
   ruby
@@ -111,8 +122,12 @@ PLATFORMS
 DEPENDENCIES
   aws-sdk
   coffee-rails (~> 3.2.1)
+  daemons
+  delayed_job_active_record
+  eventmachine
   jquery-rails
   rails (= 3.2.13)
   sass-rails (~> 3.2.3)
   sqlite3
   uglifier (>= 1.0.3)
+  whenever

@@ -2,6 +2,10 @@ source 'https://rubygems.org'
 
 gem 'rails', '3.2.13'
 gem 'aws-sdk'
+gem 'whenever'
+gem 'eventmachine'
+gem 'delayed_job_active_record'
+gem 'daemons'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'

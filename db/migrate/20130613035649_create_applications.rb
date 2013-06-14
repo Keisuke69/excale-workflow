@@ -6,7 +6,6 @@ class CreateApplications < ActiveRecord::Migration
       t.datetime :end
       t.string :to
       t.text :body
-
       t.timestamps
     end
   end

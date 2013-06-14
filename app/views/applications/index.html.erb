@@ -1,8 +1,11 @@
+<% if flash[:error] %>
+    <div class="alert alert-error"><%= flash[:error] %></div>
+<% end %>
 <h1>Listing applications</h1>
 <div class= "index_list_all"><%= link_to "show all", :controller => "applications", :action => "index_all" %></div>
 <table class="table table-hover">
   <tr>
-    <th>Date of applicayion</th>
+    <th>Date of application</th>
     <th>User</th>
     <th>Start</th>
     <th>End</th>

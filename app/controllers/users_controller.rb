@@ -1,3 +1,4 @@
+require 'digest'  
 class UsersController < ApplicationController
   # GET /users
   # GET /users.json
@@ -41,6 +42,7 @@ class UsersController < ApplicationController
   # POST /users.json
   def create
     @user = User.new(params[:user])
+    @user['password'] = Digest::SHA256.hexdigest(params[:user]['password'])
 
     respond_to do |format|
       if @user.save

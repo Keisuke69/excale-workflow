@@ -14,9 +14,33 @@
 <% @users.each do |user| %>
   <tr>
     <td><%= user.user %></td>
-    <td><%= user.password %></td>
-    <td><%= user.role %></td>
-    <td><%= user.removed %></td>
+    <td>**********</td>
+    <td>
+        <%=
+            role = "申請者"
+            case user.role
+            when "0"
+                role = "申請者"
+            when "1"
+                role = "承認者"
+            else
+                role = "申請者"
+            end
+         %>
+    </td>
+    <td>
+        <%=
+            removed = "非アクティブ"
+            case user.removed
+            when 0
+                removed = "アクティブ"
+            when 1
+                removed = "非アクティブ"
+            else
+                removed = "非アクティブ"
+            end
+         %>
+    </td>
     <td><%= link_to 'Show', user %></td>
     <td><%= link_to 'Edit', edit_user_path(user) %></td>
     <td><%= link_to 'Destroy', user, method: :delete, data: { confirm: 'Are you sure?' } %></td>
